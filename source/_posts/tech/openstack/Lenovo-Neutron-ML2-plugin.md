@@ -1,7 +1,10 @@
 ---
 layout: post
 title: Lenovo Neutron ML2 plugin Introduction
-tags: tech openstack
+date: 2015-09-07
+categories: [tech, openstack]
+tags: [tech, openstack]
+urlname: 1
 ---
 
 <p><a href="https://raw.githubusercontent.com/yuanli-cn/me/gh-pages/assets/images/Lenovo_openstack_driver.gif" target="_blank"><img src="https://raw.githubusercontent.com/yuanli-cn/me/gh-pages/assets/images/Lenovo_openstack_driver.gif" alt="desk" style="max-width:100%;"></a></p>

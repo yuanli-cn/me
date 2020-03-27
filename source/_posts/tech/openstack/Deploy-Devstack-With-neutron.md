@@ -1,7 +1,10 @@
 ---
 layout: post
 title: Deploy Devstack with Neutron
-tags: tech openstack
+date: 2015-10-24
+categories: [tech, openstack]
+tags: [tech, openstack]
+urlname: 1
 ---
 
 ## 介绍
