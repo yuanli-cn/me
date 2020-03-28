@@ -14,30 +14,32 @@
 
 
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"yuanlicn.xyz","root":"/","scheme":"Pisces","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="介绍Devstack是可以方便部署OpenStack的工具。但是默认是使用Nova Network，而Nova Network因为其功能上的局限性，已经逐渐被Neutron取代。我就结合自己的部署经验，写下这篇文章，当作是一个记录（年纪大了，发现脑袋是靠不住了:P）。 其实网上有很多介绍如何部署Neutron的文章，我觉得最有用的是这一篇，可能是因为自己的环境和这位博主很像吧。 下面先说说我的环境">
+  <meta name="description" content="介绍Devstack是可以方便部署OpenStack的工具。但是默认是使用Nova Network，而Nova Network因为其功能上的局限性，已经逐渐被Neutron取代。我就结合自己的部署经验，写下这篇文章，当作是一个记录（年纪大了，发现脑袋是靠不住了:P）。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Deploy Devstack with Neutron">
-<meta property="og:url" content="http://yoursite.com/101.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="介绍Devstack是可以方便部署OpenStack的工具。但是默认是使用Nova Network，而Nova Network因为其功能上的局限性，已经逐渐被Neutron取代。我就结合自己的部署经验，写下这篇文章，当作是一个记录（年纪大了，发现脑袋是靠不住了:P）。 其实网上有很多介绍如何部署Neutron的文章，我觉得最有用的是这一篇，可能是因为自己的环境和这位博主很像吧。 下面先说说我的环境">
+<meta property="og:url" content="http://yuanlicn.xyz/101.html">
+<meta property="og:site_name" content="My Blog">
+<meta property="og:description" content="介绍Devstack是可以方便部署OpenStack的工具。但是默认是使用Nova Network，而Nova Network因为其功能上的局限性，已经逐渐被Neutron取代。我就结合自己的部署经验，写下这篇文章，当作是一个记录（年纪大了，发现脑袋是靠不住了:P）。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://raw.githubusercontent.com/yuanli-cn/me/gh-pages/assets/images/Devstack_network_ports.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/yuanli-cn/me/gh-pages/assets/images/Devstack_iptables.png">
+<meta property="og:image" content="http://yuanlicn.xyz/101/Devstack_network_ports.png">
+<meta property="og:image" content="http://yuanlicn.xyz/101/Devstack_iptables.png">
 <meta property="article:published_time" content="2015-10-24T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-03-27T15:07:30.072Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:modified_time" content="2020-03-28T02:19:57.630Z">
+<meta property="article:author" content="Yuan Li">
 <meta property="article:tag" content="tech">
 <meta property="article:tag" content="openstack">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/yuanli-cn/me/gh-pages/assets/images/Devstack_network_ports.png">
+<meta name="twitter:image" content="http://yuanlicn.xyz/101/Devstack_network_ports.png">
 
-<link rel="canonical" href="http://yoursite.com/101.html">
+<link rel="canonical" href="http://yuanlicn.xyz/101.html">
 
 
 <script id="page-configurations">
@@ -50,7 +52,7 @@
   };
 </script>
 
-  <title>Deploy Devstack with Neutron | Hexo</title>
+  <title>Deploy Devstack with Neutron | My Blog</title>
   
 
 
@@ -101,7 +103,7 @@
 
     <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">Hexo</h1>
+      <h1 class="site-title">My Blog</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
@@ -156,16 +158,16 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/101.html">
+    <link itemprop="mainEntityOfPage" href="http://yuanlicn.xyz/101.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
+      <meta itemprop="name" content="Yuan Li">
       <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="My Blog">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -186,7 +188,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-03-27 15:07:30" itemprop="dateModified" datetime="2020-03-27T15:07:30+00:00">2020-03-27</time>
+                <time title="Modified: 2020-03-28 02:19:57" itemprop="dateModified" datetime="2020-03-28T02:19:57+00:00">2020-03-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -214,6 +216,8 @@
 
       
         <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p><a href="http://docs.openstack.org/developer/devstack/" target="_blank" rel="noopener">Devstack</a>是可以方便部署OpenStack的工具。但是默认是使用Nova Network，而Nova Network因为其功能上的局限性，已经逐渐被Neutron取代。我就结合自己的部署经验，写下这篇文章，当作是一个记录（年纪大了，发现脑袋是靠不住了:P）。</p>
+<a id="more"></a>
+
 <p>其实网上有很多介绍如何部署Neutron的文章，我觉得最有用的是<a href="http://xiaoquqi.github.io/blog/2015/09/03/devstack-guide/" target="_blank" rel="noopener">这一篇</a>，可能是因为自己的环境和这位博主很像吧。</p>
 <p>下面先说说我的环境，</p>
 <blockquote>
@@ -282,8 +286,7 @@ Q_FLOATING_ALLOCATION_POOL=start=172.16.0.101,end=172.16.0.200</code></pre></li>
 </ol>
 <h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><p>准备工作做好了，部署其实很简单了，直接运行stack.sh就好了:-)</p>
 <h2 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h2><p>部署完成后，默认会创建一个public network和private network。但是Type都是VLAN，因为是在笔记本的VM里部署的OpenStack环境，所以我又另外创建了一个Flat的public network，然后在这个网络里创建instance来验证网络功能。<br>都创建完成之后，这个Network里面的Port有4个，其中一个是Gateway 172.16.0.1，这个是我们配置的，本身就在Host上，所以不用验证其连通性。剩下三个如下图所示，</p>
-<p><a href="https://raw.githubusercontent.com/yuanli-cn/me/gh-pages/assets/images/Devstack_network_ports.png" target="_blank"><img src="https://raw.githubusercontent.com/yuanli-cn/me/gh-pages/assets/images/Devstack_network_ports.png" alt="desk" style="max-width:100%;"></a></p>
-
+<p><img src="/101/Devstack_network_ports.png" alt=""></p>
 <p>在验证网络功能之前，建议大家可以先了解下Neutron的网络架构，网上教程挺多的，我推荐我看到的<a href="https://yeasy.gitbooks.io/openstack_understand_neutron/content/vlan_mode/network_node.html" target="_blank" rel="noopener">这篇</a>，但不代表是最好的。</p>
 <p>言归正传我尝试在Host去ping了提供DHCP服务的端口和Router Gateway，都是没有问题的，但是我却始终无法ping通我创建的instance 172.16.0.116。最后还是花了点时间去定位这个问题。</p>
 <p>首先我发现在host是学到了10.240.0.116的ARP的</p>
@@ -306,8 +309,7 @@ qbr0f5d58ee-79 8000.d235cb0f1967    no             qvb0f5d58ee-79
                                                    tap0f5d58ee-79
 virbr0         8000.000000000000    yes</code></pre><p>可以确定，我们创建的instance用的bridge qbr0f5d58ee-79。上面有两个interface，tap是连接到instance的，qvb的是连接到br-int的。<br>用<code>sudo tcpdump -i qvb0f5d58ee-79</code>，会发现是收到ICMP报文了了。但用<code>sudo tcpdump -i tap0f5d58ee-79</code>，却发现只有ARP报文，可见ICMP报文是在linux bridge上丢弃的。</p>
 <p>因为linux bridge本身的转发功能很简单，所以可以确定是ebtables/iptables的问题了，关于这部分，可以参考<a href="http://ebtables.netfilter.org/br_fw_ia/br_fw_ia.html" target="_blank" rel="noopener">文档</a>。<br>在这里，我们可以只关注filter table。首先看ebtables，发现里面并没有规则。然后看iptables。这里面，iptables有很多的Target，要慢慢的找，另外用iptables的-v选项是可以看到匹配到的报文统计的，可以帮助我们定位问题。<br>最终发现，问题出在neutron-openvswi-i0f5d58ee-7，如下图所示，</p>
-<p><a href="https://raw.githubusercontent.com/yuanli-cn/me/gh-pages/assets/images/Devstack_iptables.png" target="_blank"><img src="https://raw.githubusercontent.com/yuanli-cn/me/gh-pages/assets/images/Devstack_iptables.png" alt="desk" style="max-width:100%;"></a></p>
-
+<p><img src="/101/Devstack_iptables.png" alt=""></p>
 <p>ICMP报文匹配的是最后一个默认规则，跳转到chain neutron-openvswi-sg-fallback，而这个chain是会丢弃所有报文的，</p>
 <pre><code>Chain neutron-openvswi-sg-fallback (2 references)
  pkts bytes target     prot opt in     out     source               destination          2057  174K DROP       all  --  any    any     anywhere             anywhere             /* Default drop rule for unmatched traffic. */</code></pre><p>可以看到统计计数也是吻合的。所以解决办法就是在iptables加条规则允许ICMP报文通过，如果需要ssh到instance的话，把ssh也打开。</p>
@@ -334,10 +336,7 @@ virbr0         8000.000000000000    yes</code></pre><p>可以确定，我们创�
     <a href="/91.html" rel="prev" title="Lenovo Neutron ML2 plugin Introduction">
       <i class="fa fa-chevron-left"></i> Lenovo Neutron ML2 plugin Introduction
     </a></div>
-      <div class="post-nav-item">
-    <a href="/31.html" rel="next" title="Hello World">
-      Hello World <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -403,7 +402,7 @@ virbr0         8000.000000000000    yes</code></pre><p>可以确定，我们创�
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">John Doe</p>
+  <p class="site-author-name" itemprop="name">Yuan Li</p>
   <div class="site-description" itemprop="description"></div>
 </div>
 <div class="site-state-wrap motion-element">
@@ -411,7 +410,7 @@ virbr0         8000.000000000000    yes</code></pre><p>可以确定，我们创�
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">2</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -425,6 +424,11 @@ virbr0         8000.000000000000    yes</code></pre><p>可以确定，我们创�
       </div>
   </nav>
 </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/yuanli_cn" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;yuanli_cn" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+      </span>
+  </div>
 
 
 
@@ -451,7 +455,7 @@ virbr0         8000.000000000000    yes</code></pre><p>可以确定，我们创�
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">John Doe</span>
+  <span class="author" itemprop="copyrightHolder">Yuan Li</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
   </div>
