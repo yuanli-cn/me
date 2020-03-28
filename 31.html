@@ -30,7 +30,7 @@
 <meta property="og:description" content="PrefaceI deployed personal blog on Github Pages five years ago. I used Jekyll framework since it was recommended by most of the guides at that time. And it can automatically be built by Gibhub Pages.B">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-03-28T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-03-28T06:20:25.979Z">
+<meta property="article:modified_time" content="2020-03-28T06:39:17.848Z">
 <meta property="article:author" content="Yuan Li">
 <meta property="article:tag" content="tech">
 <meta property="article:tag" content="blog">
@@ -180,7 +180,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-03-28 00:00:00 / Modified: 06:20:25" itemprop="dateCreated datePublished" datetime="2020-03-28T00:00:00+00:00">2020-03-28</time>
+              <time title="Created: 2020-03-28 00:00:00 / Modified: 06:39:17" itemprop="dateCreated datePublished" datetime="2020-03-28T00:00:00+00:00">2020-03-28</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -211,7 +211,7 @@
 <p>The intention of this blog is recording the tricks/issues I encounter during the deployment with <code>Hexo</code>.</p>
 <a id="more"></a>
 
-<h2 id="Hands-on"><a href="#Hands-on" class="headerlink" title="Hands on"></a>Hands on</h2><h4 id="Installatioin"><a href="#Installatioin" class="headerlink" title="Installatioin"></a>Installatioin</h4><p>I use ubuntu 19.10 for this deployment.</p>
+<h2 id="Hands-on"><a href="#Hands-on" class="headerlink" title="Hands on"></a>Hands on</h2><h3 id="Installatioin"><a href="#Installatioin" class="headerlink" title="Installatioin"></a>Installatioin</h3><p>I use ubuntu 19.10 for this deployment.</p>
 <ol>
 <li>Node<br><code>Hexo</code> is powered by <code>node.js</code>, so we need install <code>node</code> firstly.<br>I tried to use <code>snap</code> to install <code>node</code> as suggested by <a href="https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions-enterprise-linux-fedora-and-snap-packages" target="_blank" rel="noopener">official guide</a>. But I encouter the <a href="https://stackoverflow.com/q/48910876/7325336" target="_blank" rel="noopener">permission issue</a>. I solved the problem by using <code>nvm</code> instead of <code>snap</code>.<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash</span><br><span class="line">$ nvm install stable</span><br></pre></td></tr></table></figure></li>
 <li>Hexo<br>It is pretty easy to install hexo.<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
@@ -221,7 +221,7 @@
 </blockquote>
 </li>
 </ol>
-<h4 id="Create-Hexo-project"><a href="#Create-Hexo-project" class="headerlink" title="Create Hexo project"></a>Create Hexo project</h4><p>Create a project named “blog”</p>
+<h3 id="Create-Hexo-project"><a href="#Create-Hexo-project" class="headerlink" title="Create Hexo project"></a>Create Hexo project</h3><p>Create a project named “blog”</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init blog</span><br><span class="line">$ ls -l blog/ | tr -s <span class="string">" "</span> | cut -d <span class="string">" "</span> -f1,6-9</span><br><span class="line">total</span><br><span class="line">-rw-rw-r-- Mar 28 05:08 _config.yml</span><br><span class="line">drwxrwxr-x Mar 28 05:09 node_modules</span><br><span class="line">-rw-rw-r-- Mar 28 05:09 package-lock.json</span><br><span class="line">-rw-rw-r-- Mar 28 05:08 package.json</span><br><span class="line">drwxrwxr-x Mar 28 05:08 scaffolds</span><br><span class="line">drwxrwxr-x Mar 28 05:08 <span class="built_in">source</span></span><br><span class="line">drwxrwxr-x Mar 28 05:08 themes</span><br><span class="line">$ <span class="built_in">cd</span> blog</span><br><span class="line">$ npm install</span><br></pre></td></tr></table></figure>
 <p>Posts can be put in <code>source/_posts/</code> folder. And there’s a <code>hello-world.md</code> sample by default.</p>
 <h4 id="Deploy-on-Github-Pages"><a href="#Deploy-on-Github-Pages" class="headerlink" title="Deploy on Github Pages"></a>Deploy on Github Pages</h4><ol>
@@ -238,22 +238,19 @@
 
 </li>
 </ol>
-<h4 id="Customization"><a href="#Customization" class="headerlink" title="Customization"></a>Customization</h4><p>Now, the site should be online with default theme and configurations.</p>
+<h3 id="Customization"><a href="#Customization" class="headerlink" title="Customization"></a>Customization</h3><p>Now, the site should be online with default theme and configurations.</p>
 <p>I’d like to customize the site a bit more.</p>
 <ol>
-<li><p>Change the theme<br>The most popular theme is <a href="https://github.com/theme-next/hexo-theme-next" target="_blank" rel="noopener">next</a>,  we can just clone it to the <code>themes</code> folder:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/theme-next/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
-<p>Then, we can set the theme in main <em>Hexo root config</em> <code>_config.yml</code>:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">theme: next</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Change <code>next</code> configurations<br>The configuration file <code>_config.yml</code> is under <code>themes/next</code> folder.</p>
-<ul>
+<li>Change the theme<br>The most popular theme is <a href="https://github.com/theme-next/hexo-theme-next" target="_blank" rel="noopener">next</a>,  we can just clone it to the <code>themes</code> folder:<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/theme-next/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
+Then, we can set the theme in main <em>Hexo root config</em> <code>_config.yml</code>:<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">theme: next</span><br></pre></td></tr></table></figure></li>
+<li>Change <code>next</code> configurations<br>The configuration file <code>_config.yml</code> is under <code>themes/next</code> folder.<ul>
 <li>Using dark mode<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">darkmode: <span class="literal">true</span></span><br></pre></td></tr></table></figure></li>
 <li>Change scheme<br><code>next</code> has 4 default schemes, the most popular one is <code>Pisces</code><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#scheme: Muse</span></span><br><span class="line"><span class="comment">#scheme: Mist</span></span><br><span class="line">scheme: Pisces</span><br><span class="line"><span class="comment">#scheme: Gemini</span></span><br></pre></td></tr></table></figure></li>
-<li>Change highlight_theme<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">highlight_theme: solarized dark</span><br></pre></td></tr></table></figure>
-
-</li>
+<li>Change highlight_theme<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">highlight_theme: solarized dark</span><br></pre></td></tr></table></figure></li>
 </ul>
+</li>
+<li>Add <code>CNAME</code> for own domain<br>This is required by <code>Github Pages</code> if we need to access this site by our own domain URL.<br>The <code>CNAME</code> file should be put under <code>themes/next/source/</code> folder:<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cat themes/next/<span class="built_in">source</span>/CNAME</span><br><span class="line">yuanlicn.xyz</span><br></pre></td></tr></table></figure>
+
 </li>
 </ol>
 <h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p><code>Hexo</code> is easier for me to setup a personal site with better user experience. And it has many themes, plugins and configurable options.<br>I’d like to recommend it over Jekyll J.</p>
@@ -339,7 +336,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Preface"><span class="nav-number">1.</span> <span class="nav-text">Preface</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hands-on"><span class="nav-number">2.</span> <span class="nav-text">Hands on</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Installatioin"><span class="nav-number">2.0.1.</span> <span class="nav-text">Installatioin</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Create-Hexo-project"><span class="nav-number">2.0.2.</span> <span class="nav-text">Create Hexo project</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Deploy-on-Github-Pages"><span class="nav-number">2.0.3.</span> <span class="nav-text">Deploy on Github Pages</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Customization"><span class="nav-number">2.0.4.</span> <span class="nav-text">Customization</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-number">3.</span> <span class="nav-text">Conclusion</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Preface"><span class="nav-number">1.</span> <span class="nav-text">Preface</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hands-on"><span class="nav-number">2.</span> <span class="nav-text">Hands on</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Installatioin"><span class="nav-number">2.1.</span> <span class="nav-text">Installatioin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-Hexo-project"><span class="nav-number">2.2.</span> <span class="nav-text">Create Hexo project</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Deploy-on-Github-Pages"><span class="nav-number">2.2.1.</span> <span class="nav-text">Deploy on Github Pages</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Customization"><span class="nav-number">2.3.</span> <span class="nav-text">Customization</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-number">3.</span> <span class="nav-text">Conclusion</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
