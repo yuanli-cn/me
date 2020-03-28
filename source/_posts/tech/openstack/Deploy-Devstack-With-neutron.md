@@ -26,10 +26,10 @@ Vagrant部署的Ubuntu 14.04，hypervisor是VirtualBox, RAM: 2G。
 
 ## 准备工作
 
- 1. 在VM里面新建一个账户，有sudo权限
+1. 在VM里面新建一个账户，有sudo权限
 
- 2. 配置网络
-    Openstack需要一个OVS Bridge连接Internet，通常取名为br-ex，我们需要把这个bridge建出来，然后我们把用于连接Internet的网卡 (eth2: 172.16.0.10)加到br-ex里面，Bridge里面IP是配在Bridge上的，但是br-ex只是用来连接Internet，本身并不一定要求有IP地址，所以完全可以把eth2上的IP直接清掉。另外还需要一个bridge br-pri用来openstack内部的通信，这个bridge是需要一个IP地址的，最为Host IP，很多服务会起在这个IP上面。
+2. 配置网络
+Openstack需要一个OVS Bridge连接Internet，通常取名为br-ex，我们需要把这个bridge建出来，然后我们把用于连接Internet的网卡 (eth2: 172.16.0.10)加到br-ex里面，Bridge里面IP是配在Bridge上的，但是br-ex只是用来连接Internet，本身并不一定要求有IP地址，所以完全可以把eth2上的IP直接清掉。另外还需要一个bridge br-pri用来openstack内部的通信，这个bridge是需要一个IP地址的，最为Host IP，很多服务会起在这个IP上面。
 
         sudo ovs-vsctl add-br br-ex
         sudo ovs-vsctl add-port br-ex eth2
@@ -39,7 +39,7 @@ Vagrant部署的Ubuntu 14.04，hypervisor是VirtualBox, RAM: 2G。
         sudo ifconfig eth2 0.0.0.0
         sudo ifconfig br-pri 10.1.1.10/24
     
-    这里有个问题是因为eth1和eth2是通过Vagrantfile建立的，所以每次重启vm，IP地址都会被重新配上。所以需要写个script在启动的时候把这两块网卡上的IP地址清除，同时这个脚本会把br-pri的地址也一起配置上。我的脚本[fluship](https://drive.google.com/file/d/0B33oO277eVsLVUJTbWozZjRNTlk/view?usp=sharing)是放在`/etc/network/if-up.d/`下面的
+这里有个问题是因为eth1和eth2是通过Vagrantfile建立的，所以每次重启vm，IP地址都会被重新配上。所以需要写个script在启动的时候把这两块网卡上的IP地址清除，同时这个脚本会把br-pri的地址也一起配置上。我的脚本[fluship](https://drive.google.com/file/d/0B33oO277eVsLVUJTbWozZjRNTlk/view?usp=sharing)是放在`/etc/network/if-up.d/`下面的
 
         #!/bin/sh
 
@@ -49,11 +49,11 @@ Vagrant部署的Ubuntu 14.04，hypervisor是VirtualBox, RAM: 2G。
 
         ifconfig br-pri 10.1.1.10/24
     
- 3. 下载devstack，我用的是stable的kilo版本, liberty也适用
+3. 下载devstack，我用的是stable的kilo版本, liberty也适用
 
      `git clone https://git.openstack.org/openstack-dev/devstack -b stable/kilo`
      
- 4. 配置自己的local.conf文件，放在devstack目录下，我的配置如下
+4. 配置自己的local.conf文件，放在devstack目录下，我的配置如下
 
         [[local|localrc]]
         ADMIN_PASSWORD=test
@@ -87,9 +87,9 @@ Vagrant部署的Ubuntu 14.04，hypervisor是VirtualBox, RAM: 2G。
         PUBLIC_NETWORK_GATEWAY=172.16.0.1
         Q_FLOATING_ALLOCATION_POOL=start=172.16.0.101,end=172.16.0.200
 
- 5. (Optional) 修改apt源，换成国内的源，原因么，大家都懂的。
+5. (Optional) 修改apt源，换成国内的源，原因么，大家都懂的。
 
- 6. (Optional) 在Host(或者其他可达的机器，我是用的lxd container)上配置PyPI cache。这个主要是为了，后面再部署的时候，可以更快一些。教程可以参考[这篇](http://doc.devpi.net/latest/quickstart-pypimirror.html)。
+6. (Optional) 在Host(或者其他可达的机器，我是用的lxd container)上配置PyPI cache。这个主要是为了，后面再部署的时候，可以更快一些。教程可以参考[这篇](http://doc.devpi.net/latest/quickstart-pypimirror.html)。
  
 ## 部署
 

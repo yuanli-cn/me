@@ -13,22 +13,22 @@ urlname: 1
 
 OpenStack里，有Nova-Network，但是Nova-Network的功能比较单一，无法达到"Networking as Service"的目的，因此产生了Neutron。Neutron的前身是Quantum，但是因为命名上的一些纠纷，后来改名为Neutron。
 
+<!-- more -->
+
 ### ML2 plugin
 
 ML2 (Modular Layer 2) plugin是Neutron的Core Plugin，主要是为了替换之前的一些L2相关的插件。ML2是一个框架，可以融合很多现有的L2技术。
 ML2 Drivers定义了多种网络类型及其实现机制。
 
- 1. Type Drivers
+1. Type Drivers
 定义了多种网络类型(Local, Flat, VLAN, GRE and VxLAN)，每个类型的网络有对应一个TypeDriver，维护了每个网络类型特有的一些状态与操作。
 
- 2. Mechanism Drivers
- Mechanism Driver负责将Type Driver里维护的一些信息，真正的应用到底层的网络设备。这个网络设备可以是vSwitch，也可以是各个厂商的物理交换机，前提是这个厂商实现了对应的driver。
+2. Mechanism Drivers
+Mechanism Driver负责将Type Driver里维护的一些信息，真正的应用到底层的网络设备。这个网络设备可以是vSwitch，也可以是各个厂商的物理交换机，前提是这个厂商实现了对应的driver。
  
 ### Lenovo ML2 plugin
 
 Lenovo ML2 plugin就是前面所说的Mechanism Driver。当用户创建instance并配置网络的时候，就会通过这个plugin对Lenovo的物理交换机做相应的配置。有了这个plugin，用户创建多个instance之后，不用再手动配置物理交换机，就能保证instance之间，以及instance与外网都是连通的。
-
-<!-- more -->
 
 ### Lenovo ML2 plugin的部署
 如果您是用Openstack社区的方法部署的Openstack环境，请参考Openstack Wiki上关于Lenovo ML2 plugin的部署方法：
