@@ -7,7 +7,7 @@ tags: [tech, openstack]
 urlname: 1
 ---
 
-<p><a href="https://raw.githubusercontent.com/yuanli-cn/me/gh-pages/assets/images/Lenovo_openstack_driver.gif" target="_blank"><img src="https://raw.githubusercontent.com/yuanli-cn/me/gh-pages/assets/images/Lenovo_openstack_driver.gif" alt="desk" style="max-width:100%;"></a></p>
+![](Lenovo-Neutron-ML2-plugin/Lenovo_openstack_driver.gif)
 
 ### Neutron
 
@@ -27,6 +27,8 @@ ML2 Drivers定义了多种网络类型及其实现机制。
 ### Lenovo ML2 plugin
 
 Lenovo ML2 plugin就是前面所说的Mechanism Driver。当用户创建instance并配置网络的时候，就会通过这个plugin对Lenovo的物理交换机做相应的配置。有了这个plugin，用户创建多个instance之后，不用再手动配置物理交换机，就能保证instance之间，以及instance与外网都是连通的。
+
+<!-- more -->
 
 ### Lenovo ML2 plugin的部署
 如果您是用Openstack社区的方法部署的Openstack环境，请参考Openstack Wiki上关于Lenovo ML2 plugin的部署方法：

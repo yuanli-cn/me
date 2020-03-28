@@ -11,6 +11,8 @@ urlname: 1
 
 [Devstack](http://docs.openstack.org/developer/devstack/)是可以方便部署OpenStack的工具。但是默认是使用Nova Network，而Nova Network因为其功能上的局限性，已经逐渐被Neutron取代。我就结合自己的部署经验，写下这篇文章，当作是一个记录（年纪大了，发现脑袋是靠不住了:P）。
 
+<!-- more -->
+
 其实网上有很多介绍如何部署Neutron的文章，我觉得最有用的是[这一篇](http://xiaoquqi.github.io/blog/2015/09/03/devstack-guide/)，可能是因为自己的环境和这位博主很像吧。
 
 下面先说说我的环境，
@@ -98,7 +100,7 @@ Vagrant部署的Ubuntu 14.04，hypervisor是VirtualBox, RAM: 2G。
 部署完成后，默认会创建一个public network和private network。但是Type都是VLAN，因为是在笔记本的VM里部署的OpenStack环境，所以我又另外创建了一个Flat的public network，然后在这个网络里创建instance来验证网络功能。
 都创建完成之后，这个Network里面的Port有4个，其中一个是Gateway 172.16.0.1，这个是我们配置的，本身就在Host上，所以不用验证其连通性。剩下三个如下图所示，
 
-<p><a href="https://raw.githubusercontent.com/yuanli-cn/me/gh-pages/assets/images/Devstack_network_ports.png" target="_blank"><img src="https://raw.githubusercontent.com/yuanli-cn/me/gh-pages/assets/images/Devstack_network_ports.png" alt="desk" style="max-width:100%;"></a></p>
+![](Deploy-Devstack-With-neutron/Devstack_network_ports.png)
 
 在验证网络功能之前，建议大家可以先了解下Neutron的网络架构，网上教程挺多的，我推荐我看到的[这篇](https://yeasy.gitbooks.io/openstack_understand_neutron/content/vlan_mode/network_node.html)，但不代表是最好的。
 
@@ -144,7 +146,7 @@ br-int要连到instance，还需要经过linux bridge，我们先看看是哪个
 在这里，我们可以只关注filter table。首先看ebtables，发现里面并没有规则。然后看iptables。这里面，iptables有很多的Target，要慢慢的找，另外用iptables的-v选项是可以看到匹配到的报文统计的，可以帮助我们定位问题。
 最终发现，问题出在neutron-openvswi-i0f5d58ee-7，如下图所示，
 
-<p><a href="https://raw.githubusercontent.com/yuanli-cn/me/gh-pages/assets/images/Devstack_iptables.png" target="_blank"><img src="https://raw.githubusercontent.com/yuanli-cn/me/gh-pages/assets/images/Devstack_iptables.png" alt="desk" style="max-width:100%;"></a></p>
+![](Deploy-Devstack-With-neutron/Devstack_iptables.png)
 
 ICMP报文匹配的是最后一个默认规则，跳转到chain neutron-openvswi-sg-fallback，而这个chain是会丢弃所有报文的，
 
