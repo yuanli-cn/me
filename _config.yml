@@ -103,4 +103,3 @@ deploy:
   repo: https://github.com/yuanli-cn/me.git
   branch: gh-pages
   name: yuanli-cn
-  ignore_pattern: CNAME
