@@ -91,7 +91,7 @@ The most popular theme is [next](https://github.com/theme-next/hexo-theme-next),
 ```bash
 $ git clone https://github.com/theme-next/hexo-theme-next themes/next
 ```
-Then, we can set the theme in main *Hexo root config* `_config.yml`:
+Then, we can set the theme in main **Hexo root config** `_config.yml`:
 ```bash
 theme: next
 ```
