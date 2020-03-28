@@ -261,7 +261,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-03-28 02:19:57" itemprop="dateModified" datetime="2020-03-28T02:19:57+00:00">2020-03-28</time>
+                <time title="Modified: 2020-03-28 06:46:21" itemprop="dateModified" datetime="2020-03-28T06:46:21+00:00">2020-03-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -346,7 +346,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-03-28 02:20:35" itemprop="dateModified" datetime="2020-03-28T02:20:35+00:00">2020-03-28</time>
+                <time title="Modified: 2020-03-28 06:43:26" itemprop="dateModified" datetime="2020-03-28T06:43:26+00:00">2020-03-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -375,14 +375,6 @@
       
           <p><img src="/91/Lenovo_openstack_driver.gif" alt=""></p>
 <h3 id="Neutron"><a href="#Neutron" class="headerlink" title="Neutron"></a>Neutron</h3><p>OpenStack里，有Nova-Network，但是Nova-Network的功能比较单一，无法达到”Networking as Service”的目的，因此产生了Neutron。Neutron的前身是Quantum，但是因为命名上的一些纠纷，后来改名为Neutron。</p>
-<h3 id="ML2-plugin"><a href="#ML2-plugin" class="headerlink" title="ML2 plugin"></a>ML2 plugin</h3><p>ML2 (Modular Layer 2) plugin是Neutron的Core Plugin，主要是为了替换之前的一些L2相关的插件。ML2是一个框架，可以融合很多现有的L2技术。<br>ML2 Drivers定义了多种网络类型及其实现机制。</p>
-<ol>
-<li><p>Type Drivers<br>定义了多种网络类型(Local, Flat, VLAN, GRE and VxLAN)，每个类型的网络有对应一个TypeDriver，维护了每个网络类型特有的一些状态与操作。</p>
-</li>
-<li><p>Mechanism Drivers<br>Mechanism Driver负责将Type Driver里维护的一些信息，真正的应用到底层的网络设备。这个网络设备可以是vSwitch，也可以是各个厂商的物理交换机，前提是这个厂商实现了对应的driver。</p>
-</li>
-</ol>
-<h3 id="Lenovo-ML2-plugin"><a href="#Lenovo-ML2-plugin" class="headerlink" title="Lenovo ML2 plugin"></a>Lenovo ML2 plugin</h3><p>Lenovo ML2 plugin就是前面所说的Mechanism Driver。当用户创建instance并配置网络的时候，就会通过这个plugin对Lenovo的物理交换机做相应的配置。有了这个plugin，用户创建多个instance之后，不用再手动配置物理交换机，就能保证instance之间，以及instance与外网都是连通的。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/91.html#more" rel="contents">

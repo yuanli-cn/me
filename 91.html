@@ -22,16 +22,16 @@
     var CONFIG = {"hostname":"yuanlicn.xyz","root":"/","scheme":"Pisces","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="NeutronOpenStack里，有Nova-Network，但是Nova-Network的功能比较单一，无法达到”Networking as Service”的目的，因此产生了Neutron。Neutron的前身是Quantum，但是因为命名上的一些纠纷，后来改名为Neutron。 ML2 pluginML2 (Modular Layer 2) plugin是Neutron的Core Plu">
+  <meta name="description" content="NeutronOpenStack里，有Nova-Network，但是Nova-Network的功能比较单一，无法达到”Networking as Service”的目的，因此产生了Neutron。Neutron的前身是Quantum，但是因为命名上的一些纠纷，后来改名为Neutron。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Lenovo Neutron ML2 plugin Introduction">
 <meta property="og:url" content="http://yuanlicn.xyz/91.html">
 <meta property="og:site_name" content="My Blog">
-<meta property="og:description" content="NeutronOpenStack里，有Nova-Network，但是Nova-Network的功能比较单一，无法达到”Networking as Service”的目的，因此产生了Neutron。Neutron的前身是Quantum，但是因为命名上的一些纠纷，后来改名为Neutron。 ML2 pluginML2 (Modular Layer 2) plugin是Neutron的Core Plu">
+<meta property="og:description" content="NeutronOpenStack里，有Nova-Network，但是Nova-Network的功能比较单一，无法达到”Networking as Service”的目的，因此产生了Neutron。Neutron的前身是Quantum，但是因为命名上的一些纠纷，后来改名为Neutron。">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://yuanlicn.xyz/91/Lenovo_openstack_driver.gif">
 <meta property="article:published_time" content="2015-09-07T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-03-28T02:20:35.654Z">
+<meta property="article:modified_time" content="2020-03-28T06:43:26.155Z">
 <meta property="article:author" content="Yuan Li">
 <meta property="article:tag" content="tech">
 <meta property="article:tag" content="openstack">
@@ -188,7 +188,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-03-28 02:20:35" itemprop="dateModified" datetime="2020-03-28T02:20:35+00:00">2020-03-28</time>
+                <time title="Modified: 2020-03-28 06:43:26" itemprop="dateModified" datetime="2020-03-28T06:43:26+00:00">2020-03-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -217,6 +217,8 @@
       
         <p><img src="/91/Lenovo_openstack_driver.gif" alt=""></p>
 <h3 id="Neutron"><a href="#Neutron" class="headerlink" title="Neutron"></a>Neutron</h3><p>OpenStack里，有Nova-Network，但是Nova-Network的功能比较单一，无法达到”Networking as Service”的目的，因此产生了Neutron。Neutron的前身是Quantum，但是因为命名上的一些纠纷，后来改名为Neutron。</p>
+<a id="more"></a>
+
 <h3 id="ML2-plugin"><a href="#ML2-plugin" class="headerlink" title="ML2 plugin"></a>ML2 plugin</h3><p>ML2 (Modular Layer 2) plugin是Neutron的Core Plugin，主要是为了替换之前的一些L2相关的插件。ML2是一个框架，可以融合很多现有的L2技术。<br>ML2 Drivers定义了多种网络类型及其实现机制。</p>
 <ol>
 <li><p>Type Drivers<br>定义了多种网络类型(Local, Flat, VLAN, GRE and VxLAN)，每个类型的网络有对应一个TypeDriver，维护了每个网络类型特有的一些状态与操作。</p>
@@ -225,8 +227,6 @@
 </li>
 </ol>
 <h3 id="Lenovo-ML2-plugin"><a href="#Lenovo-ML2-plugin" class="headerlink" title="Lenovo ML2 plugin"></a>Lenovo ML2 plugin</h3><p>Lenovo ML2 plugin就是前面所说的Mechanism Driver。当用户创建instance并配置网络的时候，就会通过这个plugin对Lenovo的物理交换机做相应的配置。有了这个plugin，用户创建多个instance之后，不用再手动配置物理交换机，就能保证instance之间，以及instance与外网都是连通的。</p>
-<a id="more"></a>
-
 <h3 id="Lenovo-ML2-plugin的部署"><a href="#Lenovo-ML2-plugin的部署" class="headerlink" title="Lenovo ML2 plugin的部署"></a>Lenovo ML2 plugin的部署</h3><p>如果您是用Openstack社区的方法部署的Openstack环境，请参考Openstack Wiki上关于Lenovo ML2 plugin的部署方法：<br><a href="https://wiki.openstack.org/wiki/Neutron/ML2/LenovoML2Mechanism" target="_blank" rel="noopener">wiki</a></p>
 <h3 id="Lenovo-ML2-plugin的配置"><a href="#Lenovo-ML2-plugin的配置" class="headerlink" title="Lenovo ML2 plugin的配置"></a>Lenovo ML2 plugin的配置</h3><p>部署完Lenovo ML2 plugin后，需要在plugin.ini文件中手动加上server与Lenovo Switch的连接关系，</p>
 <pre><code>[ml2_mech_lenovo:10.240.179.65]

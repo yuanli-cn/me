@@ -32,7 +32,7 @@
 <meta property="og:image" content="http://yuanlicn.xyz/101/Devstack_network_ports.png">
 <meta property="og:image" content="http://yuanlicn.xyz/101/Devstack_iptables.png">
 <meta property="article:published_time" content="2015-10-24T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-03-28T02:19:57.630Z">
+<meta property="article:modified_time" content="2020-03-28T06:46:21.315Z">
 <meta property="article:author" content="Yuan Li">
 <meta property="article:tag" content="tech">
 <meta property="article:tag" content="openstack">
@@ -189,7 +189,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-03-28 02:19:57" itemprop="dateModified" datetime="2020-03-28T02:19:57+00:00">2020-03-28</time>
+                <time title="Modified: 2020-03-28 06:46:21" itemprop="dateModified" datetime="2020-03-28T06:46:21+00:00">2020-03-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -237,16 +237,18 @@ sudo ovs-vsctl add-br br-pri
 sudo ovs-vsctl add-port br-pri eth1
 sudo ifconfig eth1 0.0.0.0
 sudo ifconfig eth2 0.0.0.0
-sudo ifconfig br-pri 10.1.1.10/24</code></pre><p>这里有个问题是因为eth1和eth2是通过Vagrantfile建立的，所以每次重启vm，IP地址都会被重新配上。所以需要写个script在启动的时候把这两块网卡上的IP地址清除，同时这个脚本会把br-pri的地址也一起配置上。我的脚本<a href="https://drive.google.com/file/d/0B33oO277eVsLVUJTbWozZjRNTlk/view?usp=sharing" target="_blank" rel="noopener">fluship</a>是放在<code>/etc/network/if-up.d/</code>下面的</p>
+sudo ifconfig br-pri 10.1.1.10/24</code></pre></li>
+</ol>
+<p>这里有个问题是因为eth1和eth2是通过Vagrantfile建立的，所以每次重启vm，IP地址都会被重新配上。所以需要写个script在启动的时候把这两块网卡上的IP地址清除，同时这个脚本会把br-pri的地址也一起配置上。我的脚本<a href="https://drive.google.com/file/d/0B33oO277eVsLVUJTbWozZjRNTlk/view?usp=sharing" target="_blank" rel="noopener">fluship</a>是放在<code>/etc/network/if-up.d/</code>下面的</p>
 <pre><code>#!/bin/sh
 
 ifconfig eth1 0.0.0.0
 
 ifconfig eth2 0.0.0.0
 
-ifconfig br-pri 10.1.1.10/24</code></pre></li>
+ifconfig br-pri 10.1.1.10/24</code></pre><ol start="3">
 <li><p>下载devstack，我用的是stable的kilo版本, liberty也适用</p>
-<p> <code>git clone https://git.openstack.org/openstack-dev/devstack -b stable/kilo</code></p>
+<p>  <code>git clone https://git.openstack.org/openstack-dev/devstack -b stable/kilo</code></p>
 </li>
 <li><p>配置自己的local.conf文件，放在devstack目录下，我的配置如下</p>
 <pre><code>[[local|localrc]]
