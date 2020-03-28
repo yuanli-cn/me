@@ -8,7 +8,7 @@ urlname: 1
 ---
 
 ## Preface
-I deployed personal blog on [Github Pages](https://pages.github.com/) five years ago. I used Jekyll framework since it was recommended by most of the guides at that time. And it can automatically be built by Gibhub Pages.    
+I deployed personal blog on [Github Pages](https://pages.github.com/) five years ago. I used Jekyll framework since it was recommended by most of the guides at that time. And it can automatically be built by Github Pages.    
 But I have little experience on HTML/CSS/JavaScript, it seems hard for me to make better user experience with Jekyll. So now in 2020, I decide to try [Hexo](https://hexo.io/) which is another blog framework. 
 
 The intention of this blog is recording the tricks/issues I encounter during the deployment with `Hexo`.
@@ -55,7 +55,7 @@ $ npm install
 ```
 Posts can be put in `source/_posts/` folder. And there's a `hello-world.md` sample by default.
 
-#### Deploy on Github Pages
+### Deploy on Github Pages
 1. Create repo
 In order to deploy the project to `Github Pages`, we need create a github repo for hosting the project. We can do this by following the [official guide](https://help.github.com/en/github/working-with-github-pages/creating-a-github-pages-site)
 
